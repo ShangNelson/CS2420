@@ -1,0 +1,15 @@
+{
+  "OutputFoldersPerTargetSystem": {
+    "Local Machine": [
+      "out\\build\\x64-Debug",
+      "out\\install\\x64-Debug"
+    ]
+  },
+  "ExpandedNodes": [
+    "",
+    "\\10.4",
+    "\\out\\build"
+  ],
+  "SelectedNode": "\\10.4\\BinaryTreeDeleteTest.exe",
+  "PreviewInSolutionExplorer": false
+}

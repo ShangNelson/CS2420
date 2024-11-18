@@ -1,0 +1,147 @@
+#pragma once
+#include <iostream>
+#include <memory>
+#include <string>
+#include <stdexcept>
+
+using namespace std;
+
+template<typename Item>
+class SortedSortedCollection;
+
+template<typename Item>
+ostream& operator<< (ostream&, const SortedCollection<Item>&c);
+
+template<typename Item>
+SortedCollection<Item> operator<< (SortedCollection<Item>&, Item&);
+
+template<typename Item>
+class SortedCollection {
+public:
+  SortedCollection();
+  SortedCollection(int size);
+  SortedCollection(SortedCollection<Item>& a);
+  virtual int size();
+  virtual Item get(int ndx) const;
+  virtual void add(Item e);
+  virtual void removeEnd();
+  virtual SortedCollection<Item>& operator= (SortedCollection<Item>&a);
+  virtual Item operator [](int ndx);
+  virtual void operator-(int num);
+  virtual void operator+(Item&i);
+  friend ostream& operator<< <>(ostream&, const SortedCollection<Item>& c);
+  SortedCollection<Item> operator<< <>(SortedCollection<Item>&, Item&);
+
+protected:
+  int capacity;
+  int curSize;
+  static const int INITIAL_CAPACITY = 8;
+  void expand();
+  unique_ptr<Item[]> elements;
+};
+template<typename Item>
+SortedCollection<Item>::SortedCollection(){
+    capacity = INITIAL_CAPACITY;
+    curSize = 0;
+    elements = make_unique<Item[]>(capacity);
+}
+template<typename Item>
+SortedCollection<Item>::SortedCollection(int size){
+    capacity = size;
+    curSize = 0;
+    elements = make_unique<Item[]>(capacity);
+}
+template<typename Item>
+SortedCollection<Item>::SortedCollection(SortedCollection<Item>& a){
+    capacity = a.capacity;
+    curSize = a.curSize;
+    elements = make_unique<Item[]>(capacity);
+    for (int i = 0; i < curSize; i++) {
+      elements[i] = a.elements[i];
+    }
+  }
+
+template<typename Item>
+int SortedCollection<Item>::size() {
+   return curSize;
+}
+template<typename Item>
+Item SortedCollection<Item>::get(int ndx) const {
+   return elements[ndx];
+}
+
+template<typename Item>
+void SortedCollection<Item>::add(Item e) {
+    if (curSize == capacity) {
+      expand();
+    }
+    elements[curSize] = e;
+    curSize++;
+}
+
+template<typename Item>
+void SortedCollection<Item>::removeEnd() {
+    curSize--;
+    if (curSize < 0) {
+      throw runtime_error("Empty List");
+    }
+}
+
+template<typename Item>
+SortedCollection<Item>& SortedCollection<Item>::operator=(SortedCollection&a) {
+  auto newElements = make_unique<Item[]>(a.capacity);
+  for (int i = 0; i < a.curSize; i++) {
+    newElements[i] = a.elements[i];
+  }
+  elements = move(newElements);
+  capacity = a.capacity;
+  curSize = a.curSize;
+
+  return *this;
+}
+
+template<typename Item>
+Item SortedCollection<Item>::operator [](int ndx) {
+  return get(ndx);
+}
+
+template<typename Item>
+void SortedCollection<Item>::operator -(int num) {
+  for (int i = 0; i < num; i++) {
+    removeEnd();
+  }
+}
+
+
+template<typename Item>
+void SortedCollection<Item>::expand() {
+    auto newElements = make_unique<Item[]> (capacity*2);
+    for (int i = 0; i < capacity; i++) {
+      newElements[i] = elements[i];
+    }
+    elements = move(newElements);
+    capacity *= 2;
+}
+
+
+template<typename Item>
+ostream& operator<< (ostream& out, const SortedCollection<Item>&c) {
+  for (int i = 0; i < c.curSize; i++) {
+    out << c.elements[i];
+    if (i < c.curSize-1) out << " ";
+  }
+  return out;
+}
+
+
+
+template<typename Item>
+void SortedCollection<Item>::operator+(Item&i) {
+  add(i);
+}
+
+template<typename Item>
+SortedCollection<Item> SortedCollection<Item>::operator<<(SortedCollection<Item>& out, Item& in) {
+  out.add(in);
+  return *this;
+}

@@ -1,0 +1,11 @@
+# ninja log v5
+23	1757	7269864711796344	CMakeFiles/CS2420.dir/1.2_Try/Distance.cpp.obj	14560a24bff4a667
+96	1790	7269864711816371	CMakeFiles/CS2420.dir/2.1/PointOverloadedOperators.cpp.obj	bc8ed7e57795f17a
+111	1792	7269864711889043	CMakeFiles/CS2420.dir/2.2/main.cpp.obj	716147aa2bc56e53
+5	1794	7269864712010748	CMakeFiles/CS2420.dir/1.1_No_Brainer/PointOverloadedOperators.cpp.obj	f7eced7d7b7f1273
+51	1942	7269864713731913	CMakeFiles/CS2420.dir/1.4_Dates/DateTesting.cpp.obj	4e594ec74c51cbca
+65	1944	7269864713756296	CMakeFiles/CS2420.dir/1.4_Dates/main.cpp.obj	afe6e9ec6728991e
+127	2057	7269864714923376	CMakeFiles/CS2420.dir/3.1/CollectionTesting.cpp.obj	24a6cff35cee76e7
+163	2079	7269864715137872	CMakeFiles/CS2420.dir/4.1/PalindromeTester.cpp.obj	e3eaec381a6406b8
+80	2277	7269864716886860	CMakeFiles/CS2420.dir/2.4_Range/RangeTesting.cpp.obj	8bae9e2ea02c1108
+1767	3094	7269864725313833	CMakeFiles/CS2420.dir/testingTryItOuts.cpp.obj	4a42321d90eb1a8
